@@ -25,8 +25,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let firstQuestion = allQuestions.list[0]
-        questionLabel.text = firstQuestion.questionText
+        nextQuestion()
         
     }
 
@@ -62,8 +61,17 @@ class ViewController: UIViewController {
             
         }
         else {
-            print("End of Quiz")
-            questionNumber = 0
+            
+            let alert = UIAlertController(title: "Great!", message: "You've finished the Quiz, do you want to start over?", preferredStyle: .alert)
+            
+            let restartAction = UIAlertAction(title: "Restart", style: .default, handler: { (UIAlertAction) in
+                self.startOver()
+            })
+            
+            alert.addAction(restartAction)
+            
+            present(alert, animated: true, completion: nil)
+            
         }
         
     }
@@ -84,6 +92,9 @@ class ViewController: UIViewController {
     
     
     func startOver() {
+        
+        questionNumber = 0
+        nextQuestion()
        
     }
     
